@@ -24,7 +24,7 @@ Para llevar a cabo el laboratorio y desarrollar la solución de la problemática
 
 La topología de la red está diseñada para una empresa que conecta sus dispositivos a una red corporativa centralizada con acceso a una red más amplia (WAN) y a servicios externos. La red local se segmenta mediante VLANs para organizar y optimizar el tráfico de diferentes tipos de dispositivos, usuarios y servicios. Se implementan técnicas avanzadas de seguridad y administración para garantizar la estabilidad, confiabilidad y escalabilidad de la red a largo plazo.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/top.png)
+![Imagen]()
 **Figura 1.** Topología.
 
 ### Elementos
@@ -45,7 +45,7 @@ La topología de la red está diseñada para una empresa que conecta sus disposi
 - HTTP (Hypertext Transfer Protocol).
 - Modelo TCP/IP.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/pagina.png)
+![Imagen]()
 **Figura 2.** Página personalizada con las iniciales de los integrantes.
 
 ### Segmentación mediante VLANs
@@ -58,7 +58,7 @@ Se crearon diferentes VLANs para organizar el tráfico en la red local:
 ### Esquema de direccionamiento IPv4
 Se aplicó una metodología de diseño estructurado, donde se segmenta la red en subredes adecuadas para garantizar la correcta distribución de direcciones IP. La segmentación asegura un manejo eficiente de los recursos de IP y la escalabilidad futura del sistema. Se emplea el servicio DHCP con éxito como se ve a continuación.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/dhcp1.png)
+![Imagen]()
 **Figura 3.** DHCP.
 
 - Más capturas de configuración y verificación se encuentran en los siguientes apartados para resolver las preguntas propuestas en el laboratorio, analizar los resultados y justificar las conclusiones.
@@ -110,39 +110,39 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 - **¿Cómo se asignan los dispositivos y las interfaces?** Se muestra en las tablas a continuación.
 
 #### Tabla de Subnetting
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/sub1.png)
+![Imagen]()
 
 ##### Proceso
 Para calcular la dirección de broadcast de una red, identificamos la dirección IP y su máscara de subred. Ambas se convierten a binario, luego se realiza una operación AND entre la dirección IP y la máscara para obtener la dirección de red. Con esta dirección, se localizan los bits de host (ceros en la máscara) y se cambian todos esos bits por 1 en la dirección de red para obtener la dirección de broadcast. Por ejemplo, para la red 172.17.40.0/22, la dirección de broadcast resultante sería 172.17.43.255.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/pro.png)
+![Imagen]()
 
 #### Tabla de Direccionamiento
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/a.png)
+![Imagen]()
 
 ### 2) Describa el proceso de montaje, configuración y validación de los protocolos y servicios de red requeridos para el correcto funcionamiento de la topología de red. 
 
 #### DNS
 Respecto al proceso de configuración del DNS, primero se le asigna de forma estática su IP, es 161.130.2.4, la cual es la que se pone para configurar el DNS server en los dispositivos con el DHCP. Como se muestra en la siguiente imagen, el servicio de DHCP define el dominio como  *www.jnm.net* y lo dirige a 161.130.2.5, número que hace referencia al Web Server al ser su IP. Esto es lo que permite modificar el HTML y darle personalización a la página web.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/server.png)
+![Imagen]()
 **Figura 13.** Servidor DNS.
 
 #### HTTP
 Para configurar el servicio de HTTP primero se configuró la dirección IP de forma estática, de acuerdo con la tabla de direccionamiento. Como pertenece a la red de SERVERS, su dirección es 161.130.2.5, perteneciendo a la red 161.132.130.0 / 28. La máscara fue seleccionada para permitir 10 host, como indicaba el laboratorio. Finalmente, se modifica el index.html para que muestre la página personalizada que aparece en la *Figura 2*.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/http.png)
+![Imagen]()
 **Figura 14.** HTTP.
 
 Los servicios DNS y HTTP demuestran ser exitosos y tienen el comportamiento esperado. Lo anterior se debe a que existe la debida conexión entre el servidor web y el servidor DNS, como se evidencia en la simulación. Además, se logra visualizar la página web como se ve en la *Figura 2* al ingresar, desde un PC por medio del web browser, *www.jnm.net*, que es la dirección creada a partir de las iniciales de los integrantes.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/con1.png)
+![Imagen]()
 **Figura 15.** Conexión entre DNS y HTTP.
 
 #### DHCP
 Continuando con el DHCP, se configura de manera estática su dirección IP, la cual pertenece a la red SOHO. Cada VLAN tiene su propio default gateway y dirección IP de inicio (con su respectiva máscara delimitada en la tabla), aunque comparten DNS Server (161.130.2.4) y WLC  (172.17.55.5). Todo esto se puede ver en la *Figura 3*, que aparece al inicio de la wiki. Finalmente, en R_SOHO se asignó como IP helper la dirección 172.17.55.2, haciendo referencia al servidor DHCP. La configuración del servicio se puede evidenciar con la conexión entre el servidor de DHCP y los diferentes dispositivos. 
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/disp.png)
+![Imagen]()
 **Figura 16.** Conexión entre Servidor DHCP y dispositivos.
 
 La *Figura 3* también muestra una captura de cómo se le asigna al PC su dirección IP por medio del DHCP con éxito, demostrando una buena conexión, tanto a nivel físico como lógico, entre los dispositivos. Es decir, con una correcta comunicación gracias a las VLANs, su configuración en los diferentes switches, y buen manejo del R_SOHO.
@@ -158,7 +158,7 @@ La *Figura 3* también muestra una captura de cómo se le asigna al PC su direcc
 ## 5. Retos presentados duranteel desarrollo de la práctica
 Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue la correcta configuración de las VLANs y la asignación de direcciones IP dinámicas utilizando DHCP, ya que antes de lograr aplicar el servicio DHCP, la comunicación entre diferentes VLANs fallaba, posiblemente debido a un error al momento de configurar las direcciones de manera estática. Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar las VLANs y el DHCP. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_02/raw/main/desafio.png)
+![Imagen]()
 **Figura 20.** Conexión entre LAP, WLC y PC.
 
 ## 6. Conclusiones y Recomendaciones
