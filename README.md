@@ -16,44 +16,50 @@ Link
 
 ## 1. Metodología
 Para llevar a cabo el laboratorio y desarrollar la solución de la problemática establecida, se emplea la herramienta de **Cisco Packet Tracer** [1] con el fin de realizar el diseño de la red y su respectiva simulación. Este software nos permite diseñar y simular el comportamiento de una red empresarial, probando las configuraciones de routers, switches, servidores y otros dispositivos necesarios para el funcionamiento de la red. Se configuraron distintos protocolos esenciales como DNS, DHCP y HTTP para asegurar el correcto funcionamiento de la red.
-- **Montaje:** Inicialmente, se realiza el cableado estructurado. Luego, se agrega el módulo WIC-2T para conexiones seriales en los router, Wireless LAN Controller (WLC) 3504 y Lightweight Access Point (LAP) 3702i. Después, se realiza la conexión por medio de las interfaces. Finalmente, se agregan las viñetas y recuadros para que quede más organizado.
-- **Configuración:** La primera configuración que se realiza es la de los dispositivos switch para crear las VLAN y definir sus puertos. Posteriormente, se configuraron los router para asignar las direcciones IP a las VLAN y definir el servidor DHCP. Tras configurar el router, se determina el servicio de DHCP en el servidor agregando un gateway, dirección IP de inicio y máscara de red para cada VLAN. A todos los routers y switches se les hizo la configuración básica (contraseña y hostname). Con las redes funcionando, se conectan a través de los routers determinados por rutas estáticas. Al final, se agregan los servicios de DNS y HTTP con sus respectivos servidores para poder acceder a una página web.
-- **Verificación:** Primero, se envía un ping desde el router SOHO a los diferentes dispositivos para confirmar que estén bien conectados. Luego, se manda un ping desde PC1 a PC3 para verificar la conectividad entre la misma VLAN. De la misma manera, se revisa la conectividad entre VLAN diferentes. También se confirma que el WLC y el LAP puedan hacer ping entre ellos. Después, se manda un ping entre routers y cuando funciona, se envía otro pero desde un PC. La última prueba que se realizó fue abrir la página *www.jnm.net* desde un PC.
+- **Montaje:** Inicialmente, ...
+- **Configuración:** ...
+- **Verificación:** ...
+- **Roles y Contribuciones:** ...
 
 ## 2. Resultados de configuración y verificación de funcionamiento de la topología
 
-La topología de la red está diseñada para una empresa que conecta sus dispositivos a una red corporativa centralizada con acceso a una red más amplia (WAN) y a servicios externos. La red local se segmenta mediante VLANs para organizar y optimizar el tráfico de diferentes tipos de dispositivos, usuarios y servicios. Se implementan técnicas avanzadas de seguridad y administración para garantizar la estabilidad, confiabilidad y escalabilidad de la red a largo plazo.
+La topología de la red está diseñada para una empresa que ...
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab3.png)
 **Figura 1.** Topología.
 
 ### Elementos
-- **Access Point:** LAP1 utilizado para proporcionar conectividad inalámbrica.
-- **Servidor:** Servidor DNS y servidor DHCP para la asignación de direcciones IP de manera dinámica.
+- **Servidores:** Servidor DNS y servidor DHCP para la asignación de direcciones IP de manera dinámica.
 - **Switches:** Se utilizaron switches 2960 para segmentar el tráfico en la red local.
-- **Router:** Cisco 2811, el cual conecta la red local al ISP.
-- **Dispositivos finales:** Laptops, PCs y smartphones que se intercomunican entre ellos.
+- **Routers:** Cisco 2811, el cual conecta la red local al ISP.
+- **Dispositivos finales:** PCs e impresoras que se intercomunican entre ellos.
 
 ### Tipos de redes
 - **Red de Área Local (LAN):** Es el tipo de red empleada en este laboratorio.
-- **Red de Área Local Inalámbrica (WLAN):** Para los dispositivos móviles, PCs, impresoras, tablets y laptops que usan medios no guiados.
 - **Red de Área Amplia (WAN):** La red externa que permite el acceso a internet mediante el router.
 
 ### Protocolos, servicios y modelos
 - DNS (Sistema de nombres de dominio).
 - DHCP (Protocolo de configuración dinámica de direcciones IP).
 - HTTP (Hypertext Transfer Protocol).
+- SNMP (Simple Network Management Protocol)
 - Modelo TCP/IP.
 
-![Imagen]()
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/jnm.png)
 **Figura 2.** Página personalizada con las iniciales de los integrantes.
 
 ### Segmentación mediante VLANs
-Se crearon diferentes VLANs para organizar el tráfico en la red local:
-- **VLAN 20:** Para dispositivos invitados como smartphones.
-- **VLAN 40:** Para dispositivos internos como PCs y tablets.
-- **VLAN 55:** Para el servidor y dispositivos del equipo de TI.
-- **VLAN 99:** Nativa.
+Se crearon diferentes VLANs para Intranet_BOG:
+- **VLAN 101 (aa):** Para dispositivos invitados.
+- **VLAN 102 (bb):** Para dispositivos internos.
+- **VLAN 103 (cc):** Para el servidor e impresoras.
+- **VLAN 999 (ee):** Nativa.
+
+Se crearon diferentes VLANs para organizar Intranet_MAD:
+- **VLAN 101 (aa):** Para dispositivos invitados.
+- **VLAN 102 (bb):** Para dispositivos internos.
+- **VLAN 103 (cc):** Para el servidor e impresoras.
+- **VLAN 999 (ee):** Nativa.
 
 ### Esquema de direccionamiento IPv4
 Se aplicó una metodología de diseño estructurado, donde se segmenta la red en subredes adecuadas para garantizar la correcta distribución de direcciones IP. La segmentación asegura un manejo eficiente de los recursos de IP y la escalabilidad futura del sistema. Se emplea el servicio DHCP con éxito como se ve a continuación.
@@ -110,7 +116,7 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 - **¿Cómo se asignan los dispositivos y las interfaces?** Se muestra en las tablas a continuación.
 
 #### Tabla de Subnetting
-![Imagen]()
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab3net.png)
 
 ##### Proceso
 Para calcular la dirección de broadcast de una red, identificamos la dirección IP y su máscara de subred. Ambas se convierten a binario, luego se realiza una operación AND entre la dirección IP y la máscara para obtener la dirección de red. Con esta dirección, se localizan los bits de host (ceros en la máscara) y se cambian todos esos bits por 1 en la dirección de red para obtener la dirección de broadcast. Por ejemplo, para la red 172.17.40.0/22, la dirección de broadcast resultante sería 172.17.43.255.
