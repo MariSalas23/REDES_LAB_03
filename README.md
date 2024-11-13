@@ -124,7 +124,7 @@ Para calcular la dirección de broadcast de una red, identificamos la dirección
 ![Imagen]()
 
 #### Tabla de Direccionamiento
-![Imagen]()
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab3dir.png)
 
 ### 2) Describa el proceso de montaje, configuración y validación de los protocolos y servicios de red requeridos para el correcto funcionamiento de la topología de red. 
 
