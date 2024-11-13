@@ -104,14 +104,27 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 
 #### Preguntas
 
-- **¿Cuántas subredes necesito?** 172.17.0.0 / 16 necesita 4 subredes para la topología propuesta.
-- **¿Cuántos hosts requieren?** VLAN 20 y VLAN 40 requieren 1022 hosts, VLAN 55 y 99 requieren de 254 hosts.
+**INTRANET BOGOTÁ**
+- **¿Cuántas subredes necesito?** 2001:1200:A11:: / 48 necesita 4 subredes para la topología propuesta.
+- **¿Cuántos hosts requieren?** No se especifica un número necesario de host en la guía de laboratorio. Sin embargo, es recomendado usar la mascara / 64 en la mayoría de las redes.
 - **¿Qué dispositivos son parte de cada subnet?**
-     * *VLAN 20:* Para PC1, PC3 y Smartphone.
-     * *VLAN 40:* Para PC2, PC4 y Tablet.
-     * *VLAN 55:* Para Servers, Printers y Laptop.
-     * *VLAN 99:* Para nodos intermedios.
-- **¿Cuáles son privadas y públicas?** Los nodos finales que quieren acceder a internet necesitan direcciones públicas, los demás pueden tener direcciones privadas.
+     * *VLAN 101 (aa):* Para PC1 y PC3 (Invitados).
+     * *VLAN 102 (bb):* Para PC2 y PC4 (Interno).
+     * *VLAN 103 (cc):* Para Servers y Printers.
+     * *VLAN 999 (ee):* Para nodos intermedios.
+- **¿Cuáles son privadas y públicas?** En IPv6, los dispositivos que necesitan acceso a Internet deben utilizar Global Unicast Addresses (GUAs). Los dispositivos que no necesitan conectarse a Internet pueden usar Unique Local Addresses (ULAs), que son direcciones privadas en IPv6.
+- **¿Dónde deberían conservarse las direcciones?** Las direcciones son estáticas en los servidores. Las demás pueden ser dinámicas.
+- **¿Cómo se asignan los dispositivos y las interfaces?** Se muestra en las tablas a continuación.
+
+**INTRANET MADRID**
+- **¿Cuántas subredes necesito?** 001:1200:B21:: / 48 necesita 4 subredes para la topología propuesta.
+- **¿Cuántos hosts requieren?** No se especifica un número necesario de host en la guía de laboratorio. Sin embargo, es recomendado usar la mascara / 64 en la mayoría de las redes.
+- **¿Qué dispositivos son parte de cada subnet?**
+     * *VLAN 101 (ff):* Para PC5 y PC8 (Invitados).
+     * *VLAN 102 (gg):* Para PC6 y PC7 (Interno).
+     * *VLAN 103 (hh):* Para Servers y Printers.
+     * *VLAN 999 (jj):* Para nodos intermedios.
+- **¿Cuáles son privadas y públicas?** En IPv6, los dispositivos que necesitan acceso a Internet deben utilizar Global Unicast Addresses (GUAs). Los dispositivos que no necesitan conectarse a Internet pueden usar Unique Local Addresses (ULAs), que son direcciones privadas en IPv6.
 - **¿Dónde deberían conservarse las direcciones?** Las direcciones son estáticas en los servidores. Las demás pueden ser dinámicas.
 - **¿Cómo se asignan los dispositivos y las interfaces?** Se muestra en las tablas a continuación.
 
@@ -152,6 +165,10 @@ Continuando con el DHCP, se configura de manera estática su dirección IP, la c
 **Figura 16.** Conexión entre Servidor DHCP y dispositivos.
 
 La *Figura 3* también muestra una captura de cómo se le asigna al PC su dirección IP por medio del DHCP con éxito, demostrando una buena conexión, tanto a nivel físico como lógico, entre los dispositivos. Es decir, con una correcta comunicación gracias a las VLANs, su configuración en los diferentes switches, y buen manejo del R_SOHO.
+
+#### SNMP
+
+#### Aplicación
 
 ### 3) Evalúe el flujo bidireccional de datos generado por la solución de seguimiento remoto de paciente desde la aplicación “Tracker App”, pasando por la “Tracker Replay” y finalizando, en la aplicación “Tracker Dashboard”. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
