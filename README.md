@@ -56,10 +56,10 @@ Se crearon diferentes VLANs para Intranet_BOG:
 - **VLAN 999 (ee):** Nativa.
 
 Se crearon diferentes VLANs para organizar Intranet_MAD:
-- **VLAN 101 (aa):** Para dispositivos invitados.
-- **VLAN 102 (bb):** Para dispositivos internos.
-- **VLAN 103 (cc):** Para el servidor e impresoras.
-- **VLAN 999 (ee):** Nativa.
+- **VLAN 101 (ff):** Para dispositivos invitados.
+- **VLAN 102 (gg):** Para dispositivos internos.
+- **VLAN 103 (hh):** Para el servidor e impresoras.
+- **VLAN 999 (jj):** Nativa.
 
 ### Esquema de direccionamiento IPv4
 Se aplicó una metodología de diseño estructurado, donde se segmenta la red en subredes adecuadas para garantizar la correcta distribución de direcciones IP. La segmentación asegura un manejo eficiente de los recursos de IP y la escalabilidad futura del sistema. Se emplea el servicio DHCP con éxito como se ve a continuación.
