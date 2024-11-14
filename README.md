@@ -14,7 +14,7 @@ La coexistencia de IPv4 e IPv6 en redes empresariales es fundamental para enfren
 ## 1. Metodología
 Para llevar a cabo el laboratorio y desarrollar la solución de la problemática establecida, se emplea la herramienta de **Cisco Packet Tracer** [1]. Este software nos permite diseñar y simular el comportamiento de una red empresarial, probando las configuraciones de routers, switches, servidores y otros dispositivos necesarios para el funcionamiento de la red. Se configuraron distintos protocolos esenciales como DNS, DHCP, SNMP y HTTP para asegurar el correcto funcionamiento de la red.
 - **Montaje:** Inicialmente, se agregan al archivo de Packet Tracer: ocho computadores, seis switches (2811), un switch multicapa (3650), seis routers (2960), cuatro servidores y cuatro impresoras. Luego, se nombran los dispositivos como indica el documento. Después, se agrega el módulo WIC-2T para conexiones seriales en los routers. Posteriormente, se realiza la conexión por medio de las interfaces. Finalmente, se agregan las viñetas y recuadros para que quede más organizado.
-- **Configuración:** La primera configuración que se realiza es la de los dispositivos switch para crear las VLAN y definir sus puertos. Posteriormente, se configuró R1_BOG y R2_ESP para asignar las direcciones IPv6 a las VLAN, usando DHCPv6 Stateful y SLAAC (Stateless Address Autoconfiguration), respectivamente. Los servidores cuentan con direcciones estáticas. Adicionalmente, a todos los routers y switches se les hizo la configuración básica (contraseña y hostname). Entonces, con esto se agregan los servicios de DNS y HTTP, junto con sus respectivos servidores, para poder acceder a una página web. El acceso a esta se limita con access lists. De manera similar, se incluye el protocolo SNMP para que solo pueda ser accedido desde dispositivos de la VLAN interna. Toda esta configuración se hace  en los routers R1_BOG y R2_ESP. Continuando con la red IPv4, las redes Intranet BOG e Intrnet MAD se conectan a través del internet mediante los routers con un túnel con IPsec VPN y dos protocolos de enrutamiento, OSPF (Open Shortest Path First) y EIGRP (Enhanced Interior Gateway Routing Protocol). Al final, se programa la aplicación Tracker utilizando su servidor y al PC4 como sistema de computo.
+- **Configuración:** La primera configuración que se realiza es la de los dispositivos switch para crear las VLAN y definir sus puertos. Posteriormente, se configuró R1_BOG y R2_ESP para asignar las direcciones IPv6 a las VLAN, usando DHCPv6 Stateful y SLAAC (Stateless Address Autoconfiguration), respectivamente. Los servidores cuentan con direcciones estáticas. Adicionalmente, a todos los routers y switches se les hizo la configuración básica (contraseña y hostname). Entonces, con esto se agregan los servicios de DNS y HTTP, junto con sus respectivos servidores, para poder acceder a una página web. El acceso a esta se limita con access lists. De manera similar, se incluye el protocolo SNMP para que solo pueda ser accedido desde dispositivos de la VLAN interna. Toda esta configuración se hace  en los routers R1_BOG y R2_ESP. Continuando con la red IPv4, las redes Intranet BOG e Intranet MAD se conectan a través del internet mediante los routers con un túnel con IPsec VPN y dos protocolos de enrutamiento, OSPF (Open Shortest Path First) y EIGRP (Enhanced Interior Gateway Routing Protocol). Al final, se programa la aplicación Tracker utilizando su servidor y al PC4 como sistema de cómputo.
 - **Verificación:** Primero, se envía un ping desde los routers R1_BOG y R2_ESP a los diferentes dispositivos para confirmar que estén bien conectados. Luego, se manda un ping desde PC1 a PC3 para verificar la conectividad entre la misma VLAN. De la misma manera, se revisa la conectividad entre VLAN diferentes. Después, se manda un ping entre routers y cuando funciona, se envía otro pero desde un PC. Posteriormente, se prueba la página como La última prueba que se realizó fue abrir la página *https://www.jnm.net* y *http://www.jnm.net* desde diferentes PC para evaluar el funcionamiento de las ACL. Igualmente, se hace con el SNMP cambiando el nombre de los routers R1_BOG y R2_ESP. La última verificación que se realiza es la aplicación Tracker con los PC4 y PC7.
 - **Roles y Contribuciones:**
   * *Nicolás Almonacid (Relator - Programador - Presentador):* Realización de actas y exportación de configuraciones en archivos TXT - Configuración de la aplicación Tracker - Expositor en el video.
@@ -23,7 +23,7 @@ Para llevar a cabo el laboratorio y desarrollar la solución de la problemática
 
 ## 2. Resultados de configuración y verificación de funcionamiento de la topología
 
-La topología representa dos redes IPv6 que se conectan mediante una red IPv4 (Internet). Estas dos son redes empresariales bajo el nombre de Intranet BOG e Intranet MAD. En el espacio DMZ están los servidores para el funionamiento de la página y de la aplicación.
+La topología representa dos redes IPv6 que se conectan mediante una red IPv4 (Internet). Estas dos son redes empresariales bajo el nombre de Intranet BOG e Intranet MAD. En el espacio DMZ están los servidores para el funcionamiento de la página y de la aplicación.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab3.png)
 **Figura 1.** Topología.
@@ -69,7 +69,7 @@ Se aplicó una metodología de diseño estructurado, donde se segmenta la red en
 **Figura 3.** SLAAC.
 
 ### SNMP
-Para permitir la configuración remota, se utiliza SNMP. En la siguiente imagen se puede ver como logra realizar la operación "get" para obtener el nombre del router con éxito desde PC2 (dispositivo interno).
+Para permitir la configuración remota, se utiliza SNMP. En la siguiente imagen se puede ver cómo logra realizar la operación "get" para obtener el nombre del router con éxito desde PC2 (dispositivo interno).
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/SNMP.png)
 **Figura 4.** SNMP.
@@ -133,7 +133,7 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 
 **INTRANET BOGOTÁ**
 - **¿Cuántas subredes necesito?** 2001:1200:A11:: / 48 necesita 4 subredes para la topología propuesta.
-- **¿Cuántos hosts requieren?** No se especifica un número necesario de host en la guía de laboratorio. Sin embargo, es recomendado usar la mascara / 64 en la mayoría de las redes.
+- **¿Cuántos hosts requieren?** No se especifica un número necesario de host en la guía de laboratorio. Sin embargo, es recomendado usar la máscara / 64 en la mayoría de las redes.
 - **¿Qué dispositivos son parte de cada subnet?**
      * *VLAN 101 (aa):* Para PC1 y PC3 (Invitados).
      * *VLAN 102 (bb):* Para PC2 y PC4 (Interno).
@@ -145,7 +145,7 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 
 **INTRANET MADRID**
 - **¿Cuántas subredes necesito?** 001:1200:B21:: / 48 necesita 4 subredes para la topología propuesta.
-- **¿Cuántos hosts requieren?** No se especifica un número necesario de host en la guía de laboratorio. Sin embargo, es recomendado usar la mascara / 64 en la mayoría de las redes.
+- **¿Cuántos hosts requieren?** No se especifica un número necesario de host en la guía de laboratorio. Sin embargo, es recomendado usar la máscara / 64 en la mayoría de las redes.
 - **¿Qué dispositivos son parte de cada subnet?**
      * *VLAN 101 (ff):* Para PC5 y PC8 (Invitados).
      * *VLAN 102 (gg):* Para PC6 y PC7 (Interno).
