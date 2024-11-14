@@ -85,6 +85,7 @@ La visualización de la página personalizada también se logra como se muestra 
 Con el fin de que únicamente los PCs de la red interna deben gestionar sus respectivas Intranets (set y get) utilizando SNMP, al igual que permitir a los usuarios acceder a la página web alojada en el servidor Web a través del protocolo HTTPs (puerto 443) y no por HTTP (puerto 80), exceptuando los invitados, que acceden por el puerto 80, se emplean las ACL a continuación:
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/ACL.png)
+
 **Figura 6.** Configuración de las ACL.
 
 ### Aplicación Tracker
@@ -97,30 +98,30 @@ Con el fin de que únicamente los PCs de la red interna deben gestionar sus resp
 
 ## 3. Respuestas a las preguntas formuladas en la sección de procedimiento
 
-- **(1)**  El esquema de direccionamiento IPv4 basado en los requerimientos de red, y considerando X = 1, se presenta en las tablas de subnetting y direccionamiento en el apartado *4. Resultados y Análisis*.
+- **(1)**  El esquema de direccionamiento IPv4 e IPv6 basado en los requerimientos de red y considerando X = 1, se presenta en las tablas de subnetting y direccionamiento en el apartado *4. Resultados y Análisis*.
   
 - **(2)**  El montaje de la topología propuesta se puede visualizar en la *Figura 1*.
   
-- **(3)**  Evalúe y configure los servicios de red IPv6 e IPV4 requeridos para la asignación eficiente del esquema de direccionamiento desarrollado. ¿Qué método(s) de asignación se debe(n) configurar? ¿En qué terminales se deben configurar los servicios requeridos?
+- **(3)**  En el caso de Internet (IPv4), solo routers con conexiones punto a punto se utilizaban, por lo que se asignaron direcciones lógicas estáticas con una mascara de 255.255.255.252 (/30), es decir, con solo dos IPs disponibles para hosts. Por otra parte, se tienen dos redes IPv6, Intranet BOG e Intranet MAD. En la primera, se emplea el servidor DHCP para proporcionar el servicio de DHCPv6 stateful en el router R1_BOG y en su interfaz fa 0/0, ya que para la mayoría de las redes empresariales se recomienda el uso de DHCPv6 stateful por su capacidad de monitorear, gestionar y controlar cada dispositivo en la red de manera centralizada. Se puede verificar con el comando *show ipv6 dhcp pool*. Por otro lado, para Intranet MAD se seleccionó SLAAC ante la falta de un servidor DHCP en la topología. Esto se configuró en el router R2_ESP en fa 0/0, que es donde se encuentran definidas las diferentes VLANs.
 
-- **(4)**  El Departamento de Tecnología le solicitó los siguientes filtros de paquetes: Todos los usuarios de la Intranet Bogotá acceden a la página web alojada en el servidor Web a través del protocolo HTTPs (puerto
-443) y no por HTTP (puerto 80), exceptuando los usuarios invitados, que acceden por el puerto 80. Los usuarios invitados que ingresen a la Intranet Madrid deben tener restringido el acceso a la página web
-por HTTPs (puerto 443) y acceder por HTTP (puerto 80). Finalmente, los usuarios de la empresa en la Intranet Madrid sólo deben acceder al servidor Web por el puerto 443. ¿Qué servicio de red se debe
-configurar? La página web alojada en el Servidor Web debe ser personalizada. El nombre de dominio es gestionado por el servidor DNS. Este nombre debe tener el siguiente formato: Iniciales_nombres_estudiantes.net (e.g., jmalk.net)..
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/show.png)
+**Figura 8.** Resultado de *show ipv6 dhcp pool*.
+
+- **(4)**  El servicio de red que se debe configurar para que todos los usuarios acceden a la página web alojada en el servidor Web a través del protocolo HTTPs (puerto 443) y no por HTTP (puerto 80), exceptuando los usuarios invitados, que acceden por el puerto 80 es ACL o listas de control, las cuales se visualizan en la *Figura 6*. Las Access Lists se deben ubicar en los routers R1_BOG y R2_ESP. El nombre de dominio es gestionado por el servidor DNS, siguiendo el formato (Iniciales_nombres_estudiantes.net): *www.jnm.net*. 
 
 - **(5)**  Evalúe y configure los protocolos requeridos para la comunicación intra e inter VLANs y el protocolo de enrutamiento en las interfaces de red que se requieran. Hint. Enlace “Trunks”, IEEE 802.1q. ¿En qué interfaces se deben configurar OSPF o EIGRP (no RIP), OSPFv2 o EIGRPv6 (no RIPng), y redistribución entre protocolos? Analice los requerimientos de red.
   
 - **(6)** Las intranets Bogotá y Madrid se interconectan de forma segura a través de INTERNET implementada completamente en IPv4. ¿Qué servicio(s) de migración se debe(n) implementar para permitir el acceso al servidor Web instalado en el DMZ configurado completamente en IPv6? ¿Qué servicios se deben configurar para tener una comunicación segura entre las Intranets? Evalúe y configure. Anexe evidencias
-de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben configurar?
+de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben configurar? FALTA CONTESTAR
 
-- **(7)** Soporte de gestión de red en ambas Intranet utilizando el estándar SNMP. Únicamente los PCs de la red interna deben gestionar sus respectivas Intranets (set y get) utilizando SNMP. Nota. ¿Qué servicio debe configurar para denegar el uso de SNMP a las demás VLANs?
+- **(7)** Soporte de gestión de red en ambas Intranet utilizando el estándar SNMP. Únicamente los PCs de la red interna deben gestionar sus respectivas Intranets (set y get) utilizando SNMP. Nota. ¿Qué servicio debe configurar para denegar el uso de SNMP a las demás VLANs? FALTA CONTESTAR
 
 - **(8)** No se utilizó otro servicio adicional.
 
 - **(9)** Desarrolle una solución “Tracker” (software) orientada al seguimiento remoto de activos (PCs). El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. El servidor “Tracker Server” cuenta con una aplicación “Tracker Replay” que recibe las mediciones enviadas por la “Tracker App” y las reenvía a la aplicación “Tracker Dashboard”. Ésta última se ejecuta en un computador, PC7, ubicado en la Intranet MAD. La aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas por la aplicación
-“Tracker App” y las alertas generadas al superar los 40°C y/o 3.5 GHz. Las aplicaciones intercambian mensajes a través de sockets. 
+“Tracker App” y las alertas generadas al superar los 40°C y/o 3.5 GHz. Las aplicaciones intercambian mensajes a través de sockets. FALTA CONTESTAR
 
-- **(10)** Los archivos TXT con las configuraciones también se encuentran anexados en la tarea de Teams.
+- **(10)** Los archivos TXT con las configuraciones también se encuentran anexados en la tarea de Teams. FALTA CARGAR LOS ACTUALES
      * [Configuración de Routers](https://github.com/MariSalas23/REDES_LAB_02/raw/main/Router_Config.txt)
      * [Configuración de Switches](https://github.com/MariSalas23/REDES_LAB_02/raw/main/Switch_Config.txt)
 
@@ -163,7 +164,7 @@ Para calcular la dirección de broadcast de una red, identificamos la dirección
 #### Tabla de Direccionamiento
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab32.png)
 
-### 2) Describa el proceso de montaje, configuración y validación de los protocolos y servicios de red requeridos para el correcto funcionamiento de la topología de red. 
+### 2) Describa el proceso de montaje, configuración y validación de los protocolos y servicios de red requeridos para el correcto funcionamiento de la topología de red. FALTA TERMINAR
 
 #### DNS
 Respecto al proceso de configuración del DNS, primero se le asigna de forma estática su IP, es 161.130.2.4, la cual es la que se pone para configurar el DNS server en los dispositivos con el DHCP. Como se muestra en la siguiente imagen, el servicio de DHCP define el dominio como  *www.jnm.net* y lo dirige a 161.130.2.5, número que hace referencia al Web Server al ser su IP. Esto es lo que permite modificar el HTML y darle personalización a la página web.
@@ -200,16 +201,16 @@ La *Figura 3* también muestra una captura de cómo se le asigna al PC su direcc
 
 ### 3) Evalúe el flujo bidireccional de datos generado por la solución de seguimiento remoto de paciente desde la aplicación “Tracker App”, pasando por la “Tracker Replay” y finalizando, en la aplicación “Tracker Dashboard”. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
-...
+FALTA CONTESTAR
 
 ### 4) Explique el flujo bidireccional de mensajes SNMP intercambiados entre los dispositivos gestionados desde las diferentes Intranets al utilizar capacidades “get” y “set” sobre una variable MIB de su elección. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
-...
+FALTA CONTESTAR
 
 ## 5. Retos presentados durante el desarrollo de la práctica
 Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue establecer la correcta comunicación entre los routers y las . Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar el túnel PIsec VPN. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
 
-## 6. Conclusiones y Recomendaciones
+## 6. Conclusiones y Recomendaciones FALTA CONTESTAR
 En conclusión, la propuesta de la red empresarial permite la correcta conexión de una red de área local al internet. Durante el desarrollo de la solución se presentaron desafíos, especialmente en la implementación de VLANs y servicios como DHCP. A pesar de los retos, este trabajo reforzó los conocimientos del grupo sobre el diseño de redes empresariales y la configuración de dispositivos en **Cisco Packet Tracer**, logrando a través de la configuración de VLANs, DHCP, DNS y HTTP, establecer una red funcional que facilita la comunicación entre dispositivos. 
 
 Se recomienda trabajar utilizando comandos como *show interfaces*, *show vlan brief*, *show running-config*, *show spanning-tree*, *show ip interface brief* y demás para lograr identificar problemas en las capas 1, 2 y/o 3. Adicionalmente, en Cisco Packet Tracer a veces es necesario reiniciar dispositivos cuando no están funcionando pese a que las configuraciones están bien hechas, ya que se trata de un entorno que puede presentar fallos temporales.
@@ -219,4 +220,4 @@ Se recomienda trabajar utilizando comandos como *show interfaces*, *show vlan br
 
 [2] "Configuración de TUNNEL GRE IPV6 Sobre IPV4 en Packet tracer 7.2.2", YouTube, 2020. [Online]. Disponible: https://www.youtube.com/watch?v=474pi7GAD-o. [Accessed: 12-Nov-2024].
 
-[3] "Como Configurar un WLC y Servidor DHCP", YouTube, 2023. [Online]. Disponible: https://www.youtube.com/watch?v=WRF9f2hPIRA. [Accessed: 28-Sep-2024]. APP
+[3] REFERENCIA DE LA APP
