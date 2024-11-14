@@ -23,20 +23,16 @@ Para llevar a cabo el laboratorio y desarrollar la solución de la problemática
 
 ## 2. Resultados de configuración y verificación de funcionamiento de la topología
 
-La topología de la red está diseñada para una empresa que ...
+La topología representa dos redes IPv6 que se conectan mediante una red IPv4 (Internet). Estas dos son redes empresariales bajo el nombre de Intranet BOG e Intranet MAD. En el espacio DMZ están los servidores para el funionamiento de la página y de la aplicación.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab3.png)
 **Figura 1.** Topología.
 
 ### Elementos
 - **Servidores:** Servidor DNS y servidor DHCP para la asignación de direcciones IP de manera dinámica.
-- **Switches:** Se utilizaron switches 2960 para segmentar el tráfico en la red local.
-- **Routers:** Cisco 2811, el cual conecta la red local al ISP.
+- **Switches:** Se utilizaron switches 2960 para segmentar el tráfico en las redes locales.
+- **Routers:** Cisco 2811, los cuales representan el internet y conectan las redes de Intranet BOG e Intranet MAD.
 - **Dispositivos finales:** PCs e impresoras que se intercomunican entre ellos.
-
-### Tipos de redes
-- **Red de Área Local (LAN):** Es el tipo de red empleada en este laboratorio.
-- **Red de Área Amplia (WAN):** La red externa que permite el acceso a internet mediante el router.
 
 ### Protocolos, servicios y modelos
 - DNS (Sistema de nombres de dominio).
@@ -73,21 +69,25 @@ Se aplicó una metodología de diseño estructurado, donde se segmenta la red en
 **Figura 3.** SLAAC.
 
 ### SNMP
+Para permitir la configuración remota, se utiliza SNMP. En la siguiente imagen se puede ver como logra realizar la operación "get" para obtener el nombre del router con éxito desde PC2 (dispositivo interno).
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/SNMP.png)
 **Figura 4.** SNMP.
 
 ### Página Web
+La visualización de la página personalizada también se logra como se muestra en la Figura 5. Para los PCs invitados (que pertenecen a la VLAN - Guest) se navega con *http://www.jnm.net*, mientras que los demás pueden acceder a ella con la url *https://www.jnm.net*. Lo anterior, se consigue gracias al uso de ACL.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/pagina2.png)
 **Figura 5.** Página web (HTTP y HTTPS).
 
 ### Listas de Acceso
+Con el fin de .
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/ACL.png)
 **Figura 6.** Configuración de las ACL.
 
 ### Aplicación Tracker
+...
 
 ![Imagen]()
 **Figura 7.** Aplicación Tracker.
@@ -208,10 +208,7 @@ La *Figura 3* también muestra una captura de cómo se le asigna al PC su direcc
 ...
 
 ## 5. Retos presentados durante el desarrollo de la práctica
-Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue la correcta configuración de las VLANs y la asignación de direcciones IP dinámicas utilizando DHCP, ya que antes de lograr aplicar el servicio DHCP, la comunicación entre diferentes VLANs fallaba, posiblemente debido a un error al momento de configurar las direcciones de manera estática. Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar las VLANs y el DHCP. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
-
-![Imagen]()
-**Figura 20.** Conexión entre LAP, WLC y PC.
+Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue establecer la correcta comunicación entre los routers y las y la asignación de direcciones IP dinámicas utilizando DHCP, ya que antes de lograr aplicar el servicio DHCP, la comunicación entre diferentes VLANs fallaba, posiblemente debido a un error al momento de configurar las direcciones de manera estática. Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar las VLANs y el DHCP. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
 
 ## 6. Conclusiones y Recomendaciones
 En conclusión, la propuesta de la red empresarial permite la correcta conexión de una red de área local al internet. Durante el desarrollo de la solución se presentaron desafíos, especialmente en la implementación de VLANs y servicios como DHCP. A pesar de los retos, este trabajo reforzó los conocimientos del grupo sobre el diseño de redes empresariales y la configuración de dispositivos en **Cisco Packet Tracer**, logrando a través de la configuración de VLANs, DHCP, DNS y HTTP, establecer una red funcional que facilita la comunicación entre dispositivos. 
@@ -221,6 +218,6 @@ Se recomienda trabajar utilizando comandos como *show interfaces*, *show vlan br
 ## 7. Referencias
 [1] "Cisco Packet Tracer", *Cisco Systems*, 2024. [Enlace]. Disponible: https://www.netacad.com/courses/networking/
 
-[2] "Configuración de una red con múltiples VLAN y servicio DHCP en un mismo servidor - Packet Tracer", YouTube, 2021. [Online]. Disponible: https://www.youtube.com/watch?v=Ekr0vXDnlrM&list=LL&index=7. [Accessed: 28-Sep-2024].
+[2] "Configuración de TUNNEL GRE IPV6 Sobre IPV4 en Packet tracer 7.2.2", YouTube, 2020. [Online]. Disponible: https://www.youtube.com/watch?v=474pi7GAD-o. [Accessed: 12-Nov-2024].
 
-[3] "Como Configurar un WLC y Servidor DHCP", YouTube, 2023. [Online]. Disponible: https://www.youtube.com/watch?v=WRF9f2hPIRA. [Accessed: 28-Sep-2024].
+[3] "Como Configurar un WLC y Servidor DHCP", YouTube, 2023. [Online]. Disponible: https://www.youtube.com/watch?v=WRF9f2hPIRA. [Accessed: 28-Sep-2024]. APP
