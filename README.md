@@ -116,7 +116,7 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 
 - **(7)** Para el soporte de gestión de red en ambas Intranet utilizando el estándar SNMP se crearon dos comunidades, public (reader) y private (writer). Únicamente los PCs de la red interna pueden gestionar sus respectivas Intranets (set y get) utilizando SNMP gracias al servicio de ACL, ya que se configuran, como se muestra en la siguiente imagen, para denegar el uso de SNMP a las demás VLANs.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/configsnmp.png)
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/confsnmp.png)
 **Figura 9.** Configuración de SNMP y ACL en R2_MAD.
 
 - **(8)** No se utilizó otro servicio adicional.
