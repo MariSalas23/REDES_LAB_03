@@ -6,7 +6,7 @@
 - **Mariana Salas Gutiérrez** (0000296781)
 
 ## Video
-Link
+Link (SharePoint)
 
 ## Introducción
 La coexistencia de IPv4 e IPv6 en redes empresariales es fundamental para enfrentar los desafíos actuales de crecimiento de las redes y agotamiento de direcciones IPv4, es decir, IPv6 se ha vuelto importante para la escalabilidad y flexibilidad en las infraestructuras de red. Por ello, este informe explora el diseño, simulación y análisis de una red que permite la interoperabilidad entre ambos protocolos, utilizando Cisco Packet Tracer para la configuración y validación. Además, se destacan las problemáticas encontradas, así como las soluciones implementadas, y las conclusiones y recomendaciones a partir de los resultados del laboratorio.
@@ -15,7 +15,7 @@ La coexistencia de IPv4 e IPv6 en redes empresariales es fundamental para enfren
 Para llevar a cabo el laboratorio y desarrollar la solución de la problemática establecida, se emplea la herramienta de **Cisco Packet Tracer** [1]. Este software nos permite diseñar y simular el comportamiento de una red empresarial, probando las configuraciones de routers, switches, servidores y otros dispositivos necesarios para el funcionamiento de la red. Se configuraron distintos protocolos esenciales como DNS, DHCP, SNMP y HTTP para asegurar el correcto funcionamiento de la red.
 - **Montaje:** Inicialmente, se agregan al archivo de Packet Tracer: ocho computadores, seis switches (2811), un switch multicapa (3650), seis routers (2960), cuatro servidores y cuatro impresoras. Luego, se nombran los dispositivos como indica el documento. Después, se agrega el módulo WIC-2T para conexiones seriales en los routers. Posteriormente, se realiza la conexión por medio de las interfaces. Finalmente, se agregan las viñetas y recuadros para que quede más organizado.
 - **Configuración:** La primera configuración que se realiza es la de los dispositivos switch para crear las VLAN y definir sus puertos. Posteriormente, se configuró R1_BOG y R2_ESP para asignar las direcciones IPv6 a las VLAN, usando DHCPv6 Stateful y SLAAC (Stateless Address Autoconfiguration), respectivamente. Los servidores cuentan con direcciones estáticas. Adicionalmente, a todos los routers y switches se les hizo la configuración básica (contraseña y hostname). Entonces, con esto se agregan los servicios de DNS y HTTP, junto con sus respectivos servidores, para poder acceder a una página web. El acceso a esta se limita con access lists. De manera similar, se incluye el protocolo SNMP para que solo pueda ser accedido desde dispositivos de la VLAN interna. Toda esta configuración se hace  en los routers R1_BOG y R2_ESP. Continuando con la red IPv4, las redes Intranet BOG e Intrnet MAD se conectan a través del internet mediante los routers con un túnel con IPsec VPN y dos protocolos de enrutamiento, OSPF (Open Shortest Path First) y EIGRP (Enhanced Interior Gateway Routing Protocol). Al final, se programa la aplicación Tracker utilizando su servidor y al PC4 como sistema de computo.
-- **Verificación:** Primero, se envía un ping desde el router SOHO a los diferentes dispositivos para confirmar que estén bien conectados. Luego, se manda un ping desde PC1 a PC3 para verificar la conectividad entre la misma VLAN. De la misma manera, se revisa la conectividad entre VLAN diferentes. También se confirma que el WLC y el LAP puedan hacer ping entre ellos. Después, se manda un ping entre routers y cuando funciona, se envía otro pero desde un PC. La última prueba que se realizó fue abrir la página *www.jnm.net* desde un PC.
+- **Verificación:** Primero, se envía un ping desde los routers R1_BOG y R2_ESP a los diferentes dispositivos para confirmar que estén bien conectados. Luego, se manda un ping desde PC1 a PC3 para verificar la conectividad entre la misma VLAN. De la misma manera, se revisa la conectividad entre VLAN diferentes. Después, se manda un ping entre routers y cuando funciona, se envía otro pero desde un PC. Posteriormente, se prueba la página como La última prueba que se realizó fue abrir la página *https://www.jnm.net* y *http://www.jnm.net* desde diferentes PC para evaluar el funcionamiento de las ACL. Igualmente, se hace con el SNMP cambiando el nombre de los routers R1_BOG y R2_ESP. La última verificación que se realiza es la aplicación Tracker con los PC4 y PC7.
 - **Roles y Contribuciones:**
   * *Nicolás Almonacid (Relator - Programador - Presentador):* Realización de actas y exportación de configuraciones en archivos TXT - Configuración de la aplicación Tracker - Expositor en el video.
   * *Juan Pablo Restrepo (Encargado de redes - Presentador):* Montaje de la topología, configuración del túnel IPsec VPN y del enrutamiento (EIGRP y OSPF) -  Expositor en el video.
@@ -42,34 +42,55 @@ La topología de la red está diseñada para una empresa que ...
 - DNS (Sistema de nombres de dominio).
 - DHCP (Protocolo de configuración dinámica de direcciones IP).
 - HTTP (Hypertext Transfer Protocol).
-- HTTPS
-- SNMP (Simple Network Management Protocol)
-- ACL
-- OSPF
-- EIGRP
+- HTTPS (Hypertext Transfer Protocol Secure).
+- SNMP (Simple Network Management Protocol).
+- ACL (Access Control List).
+- OSPF (Open Shortest Path First).
+- EIGRP (Enhanced Interior Gateway Routing Protocol).
 - Modelo TCP/IP.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/jnm.png)
-**Figura 2.** Página personalizada con las iniciales de los integrantes.
-
 ### Segmentación mediante VLANs
-Se crearon diferentes VLANs para Intranet_BOG:
+Se crearon diferentes VLANs para Intranet BOG:
 - **VLAN 101 (aa):** Para dispositivos invitados.
 - **VLAN 102 (bb):** Para dispositivos internos.
 - **VLAN 103 (cc):** Para el servidor e impresoras.
 - **VLAN 999 (ee):** Nativa.
 
-Se crearon diferentes VLANs para organizar Intranet_MAD:
+Se crearon diferentes VLANs para organizar Intranet MAD:
 - **VLAN 101 (ff):** Para dispositivos invitados.
 - **VLAN 102 (gg):** Para dispositivos internos.
 - **VLAN 103 (hh):** Para el servidor e impresoras.
 - **VLAN 999 (jj):** Nativa.
 
 ### Esquema de direccionamiento IPv4
-Se aplicó una metodología de diseño estructurado, donde se segmenta la red en subredes adecuadas para garantizar la correcta distribución de direcciones IP. La segmentación asegura un manejo eficiente de los recursos de IP y la escalabilidad futura del sistema. Se emplea el servicio DHCP con éxito como se ve a continuación.
+Se aplicó una metodología de diseño estructurado, donde se segmenta la red en subredes adecuadas para garantizar la correcta distribución de direcciones IP. La segmentación asegura un manejo eficiente de los recursos de IP y la escalabilidad futura del sistema. Se emplea el servicio DHCPv6 Stateful y SLAAC con éxito como se ve a continuación.
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/DHCPv6.png)
+**Figura 2.** DHCPv6 Stateful.
+
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/SLAAC.png)
+**Figura 3.** SLAAC.
+
+### SNMP
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/SNMP.png)
+**Figura 4.** SNMP.
+
+### Página Web
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/pagina2.png)
+**Figura 5.** Página web (HTTP y HTTPS).
+
+### Listas de Acceso
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/ACL.png)
+**Figura 6.** Configuración de las ACL.
+
+### Aplicación Tracker
 
 ![Imagen]()
-**Figura 3.** DHCP.
+**Figura 7.** Aplicación Tracker.
 
 - Más capturas de configuración y verificación se encuentran en los siguientes apartados para resolver las preguntas propuestas en el laboratorio, analizar los resultados y justificar las conclusiones.
 
@@ -162,7 +183,7 @@ Los servicios DNS y HTTP demuestran ser exitosos y tienen el comportamiento espe
 ![Imagen]()
 **Figura 15.** Conexión entre DNS y HTTP.
 
-#### DHCP
+#### DHCPv6 Sateful
 Continuando con el DHCP, se configura de manera estática su dirección IP, la cual pertenece a la red SOHO. Cada VLAN tiene su propio default gateway y dirección IP de inicio (con su respectiva máscara delimitada en la tabla), aunque comparten DNS Server (161.130.2.4) y WLC  (172.17.55.5). Todo esto se puede ver en la *Figura 3*, que aparece al inicio de la wiki. Finalmente, en R_SOHO se asignó como IP helper la dirección 172.17.55.2, haciendo referencia al servidor DHCP. La configuración del servicio se puede evidenciar con la conexión entre el servidor de DHCP y los diferentes dispositivos. 
 
 ![Imagen]()
@@ -170,9 +191,13 @@ Continuando con el DHCP, se configura de manera estática su dirección IP, la c
 
 La *Figura 3* también muestra una captura de cómo se le asigna al PC su dirección IP por medio del DHCP con éxito, demostrando una buena conexión, tanto a nivel físico como lógico, entre los dispositivos. Es decir, con una correcta comunicación gracias a las VLANs, su configuración en los diferentes switches, y buen manejo del R_SOHO.
 
+#### SLAAC
+
 #### SNMP
 
-#### Aplicación
+#### Aplicación Tracker
+
+#### Enrutamiento
 
 ### 3) Evalúe el flujo bidireccional de datos generado por la solución de seguimiento remoto de paciente desde la aplicación “Tracker App”, pasando por la “Tracker Replay” y finalizando, en la aplicación “Tracker Dashboard”. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
@@ -182,7 +207,7 @@ La *Figura 3* también muestra una captura de cómo se le asigna al PC su direcc
 
 ...
 
-## 5. Retos presentados duranteel desarrollo de la práctica
+## 5. Retos presentados durante el desarrollo de la práctica
 Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue la correcta configuración de las VLANs y la asignación de direcciones IP dinámicas utilizando DHCP, ya que antes de lograr aplicar el servicio DHCP, la comunicación entre diferentes VLANs fallaba, posiblemente debido a un error al momento de configurar las direcciones de manera estática. Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar las VLANs y el DHCP. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
 
 ![Imagen]()
