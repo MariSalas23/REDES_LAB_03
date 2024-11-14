@@ -109,12 +109,15 @@ Con el fin de que únicamente los PCs de la red interna deben gestionar sus resp
 
 - **(4)**  El servicio de red que se debe configurar para que todos los usuarios acceden a la página web alojada en el servidor Web a través del protocolo HTTPs (puerto 443) y no por HTTP (puerto 80), exceptuando los usuarios invitados, que acceden por el puerto 80 es ACL o listas de control, las cuales se visualizan en la *Figura 6*. Las Access Lists se deben ubicar en los routers R1_BOG y R2_ESP. El nombre de dominio es gestionado por el servidor DNS, siguiendo el formato (Iniciales_nombres_estudiantes.net): *www.jnm.net*. 
 
-- **(5)**  Evalúe y configure los protocolos requeridos para la comunicación intra e inter VLANs y el protocolo de enrutamiento en las interfaces de red que se requieran. Hint. Enlace “Trunks”, IEEE 802.1q. ¿En qué interfaces se deben configurar OSPF o EIGRP (no RIP), OSPFv2 o EIGRPv6 (no RIPng), y redistribución entre protocolos? Analice los requerimientos de red.
+- **(5)**  Para la comunicación intra vlan se deben configurar las diferentes VLAN en todos los switches de su respectiva red, una vez esto se tenga junto con el servicio de direccionamiento dinámico se puede comprobar haciendo ping entre PCs pertenecientes a la misma VLAN. Es importante definir una VLAN nativa para conectar las interfaces de los switches y routers entre si. Para que exista comunicación entre VLANs diferentes se debe establecer en el router las diferentes VLAN y sus respectivos gateways con el método de router-on-a-stick, donde en una interfaz, en este caso fa 0/0, se divide an otras como: fa 0/0.101. Respecto a los protocolos de enrutamiento y siguiendo la topología planteada, OSPF se debe usar en las interfaces de los enlaces de ISP_BOG, ISP_NET e ISP_ESP; mientras que EIGRP se debe establecer en las interfaces de los enlaces de ISP_BOG, ISP_FL e ISP_ESP. Para la configuración de el link entre los routers y los ISP de Bogotá y Madrid, se pueden usar rutas estáticas al ser enlaces punto a punto.
   
 - **(6)** Las intranets Bogotá y Madrid se interconectan de forma segura a través de INTERNET implementada completamente en IPv4. ¿Qué servicio(s) de migración se debe(n) implementar para permitir el acceso al servidor Web instalado en el DMZ configurado completamente en IPv6? ¿Qué servicios se deben configurar para tener una comunicación segura entre las Intranets? Evalúe y configure. Anexe evidencias
 de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben configurar? FALTA CONTESTAR
 
-- **(7)** Soporte de gestión de red en ambas Intranet utilizando el estándar SNMP. Únicamente los PCs de la red interna deben gestionar sus respectivas Intranets (set y get) utilizando SNMP. Nota. ¿Qué servicio debe configurar para denegar el uso de SNMP a las demás VLANs? FALTA CONTESTAR
+- **(7)** Para el soporte de gestión de red en ambas Intranet utilizando el estándar SNMP se crearon dos comunidades, public (reader) y private (writer). Únicamente los PCs de la red interna pueden gestionar sus respectivas Intranets (set y get) utilizando SNMP gracias al servicio de ACL, ya que se configuran, como se muestra en la siguiente imagen, para denegar el uso de SNMP a las demás VLANs.
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/configsnmp.png)
+**Figura 9.** Configuración de SNMP y ACL en R2_MAD.
 
 - **(8)** No se utilizó otro servicio adicional.
 
