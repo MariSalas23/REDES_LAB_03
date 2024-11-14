@@ -9,14 +9,11 @@
 Link
 
 ## Introducción
-.
-
-## Objetivo
-.
+La coexistencia de IPv4 e IPv6 en redes empresariales es fundamental para enfrentar los desafíos actuales de crecimiento de las redes y agotamiento de direcciones IPv4, es decir, IPv6 se ha vuelto importante para la escalabilidad y flexibilidad en las infraestructuras de red. Por ello, este informe explora el diseño, simulación y análisis de una red que permite la interoperabilidad entre ambos protocolos, utilizando Cisco Packet Tracer para la configuración y validación. Además, se destacan las problemáticas encontradas, así como las soluciones implementadas, y las conclusiones y recomendaciones a partir de los resultados del laboratorio.
 
 ## 1. Metodología
-Para llevar a cabo el laboratorio y desarrollar la solución de la problemática establecida, se emplea la herramienta de **Cisco Packet Tracer** [1] con el fin de realizar el diseño de la red y su respectiva simulación. Este software nos permite diseñar y simular el comportamiento de una red empresarial, probando las configuraciones de routers, switches, servidores y otros dispositivos necesarios para el funcionamiento de la red. Se configuraron distintos protocolos esenciales como DNS, DHCP y HTTP para asegurar el correcto funcionamiento de la red.
-- **Montaje:** Inicialmente, ...
+Para llevar a cabo el laboratorio y desarrollar la solución de la problemática establecida, se emplea la herramienta de **Cisco Packet Tracer** [1]. Este software nos permite diseñar y simular el comportamiento de una red empresarial, probando las configuraciones de routers, switches, servidores y otros dispositivos necesarios para el funcionamiento de la red. Se configuraron distintos protocolos esenciales como DNS, DHCP, SNMP y HTTP para asegurar el correcto funcionamiento de la red.
+- **Montaje:** Inicialmente, se agregan al archivo de Packet Tracer: ocho computadores, seis switches, un switch multicapa, seis routers, cuatro servidores y cuatro impresoras. Luego, se nombran los dispositivos como indica el documento. Después, se agrega el módulo WIC-2T para conexiones seriales en los routers. Posteriormente, se realiza la conexión por medio de las interfaces. Finalmente, se agregan las viñetas y recuadros para que quede más organizado.
 - **Configuración:** ...
 - **Verificación:** ...
 - **Roles y Contribuciones:** ...
