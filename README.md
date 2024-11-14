@@ -78,10 +78,11 @@ Para permitir la configuración remota, se utiliza SNMP. En la siguiente imagen 
 La visualización de la página personalizada también se logra como se muestra en la Figura 5. Para los PCs invitados (que pertenecen a la VLAN - Guest) se navega con *http://www.jnm.net*, mientras que los demás pueden acceder a ella con la url *https://www.jnm.net*. Lo anterior, se consigue gracias al uso de ACL.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/pagina2.png)
+
 **Figura 5.** Página web (HTTP y HTTPS).
 
 ### Listas de Acceso
-Con el fin de .
+Con el fin de que únicamente los PCs de la red interna deben gestionar sus respectivas Intranets (set y get) utilizando SNMP, al igual que permitir a los usuarios acceder a la página web alojada en el servidor Web a través del protocolo HTTPs (puerto 443) y no por HTTP (puerto 80), exceptuando los invitados, que acceden por el puerto 80, se emplean las ACL a continuación:
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/ACL.png)
 **Figura 6.** Configuración de las ACL.
@@ -154,15 +155,13 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 - **¿Cómo se asignan los dispositivos y las interfaces?** Se muestra en las tablas a continuación.
 
 #### Tabla de Subnetting
-![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab3net.png)
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab31.png)
 
 ##### Proceso
 Para calcular la dirección de broadcast de una red, identificamos la dirección IP y su máscara de subred. Ambas se convierten a binario, luego se realiza una operación AND entre la dirección IP y la máscara para obtener la dirección de red. Con esta dirección, se localizan los bits de host (ceros en la máscara) y se cambian todos esos bits por 1 en la dirección de red para obtener la dirección de broadcast. Por ejemplo, para la red 172.17.40.0/22, la dirección de broadcast resultante sería 172.17.43.255.
 
-![Imagen]()
-
 #### Tabla de Direccionamiento
-![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab3dir.png)
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab32.png)
 
 ### 2) Describa el proceso de montaje, configuración y validación de los protocolos y servicios de red requeridos para el correcto funcionamiento de la topología de red. 
 
@@ -208,7 +207,7 @@ La *Figura 3* también muestra una captura de cómo se le asigna al PC su direcc
 ...
 
 ## 5. Retos presentados durante el desarrollo de la práctica
-Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue establecer la correcta comunicación entre los routers y las y la asignación de direcciones IP dinámicas utilizando DHCP, ya que antes de lograr aplicar el servicio DHCP, la comunicación entre diferentes VLANs fallaba, posiblemente debido a un error al momento de configurar las direcciones de manera estática. Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar las VLANs y el DHCP. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
+Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue establecer la correcta comunicación entre los routers y las . Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar el túnel PIsec VPN. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
 
 ## 6. Conclusiones y Recomendaciones
 En conclusión, la propuesta de la red empresarial permite la correcta conexión de una red de área local al internet. Durante el desarrollo de la solución se presentaron desafíos, especialmente en la implementación de VLANs y servicios como DHCP. A pesar de los retos, este trabajo reforzó los conocimientos del grupo sobre el diseño de redes empresariales y la configuración de dispositivos en **Cisco Packet Tracer**, logrando a través de la configuración de VLANs, DHCP, DNS y HTTP, establecer una red funcional que facilita la comunicación entre dispositivos. 
