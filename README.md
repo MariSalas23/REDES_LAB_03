@@ -125,8 +125,8 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 “Tracker App” y las alertas generadas al superar los 40°C y/o 3.5 GHz. Las aplicaciones intercambian mensajes a través de sockets. FALTA CONTESTAR
 
 - **(10)** Los archivos TXT con las configuraciones también se encuentran anexados en la tarea de Teams. FALTA CARGAR LOS ACTUALES
-     * [Configuración de Routers](https://github.com/MariSalas23/REDES_LAB_03/blob/main/R2_ESP_running-config.txt)
-     * [Configuración de Switches](https://github.com/MariSalas23/REDES_LAB_03/blob/main/SW1_Intranet_running-config.txt)
+     * [Configuración de Routers](https://raw.githubusercontent.com/MariSalas23/REDES_LAB_03/refs/heads/main/R2_ESP_running-config.txt)
+     * [Configuración de Switches](https://raw.githubusercontent.com/MariSalas23/REDES_LAB_03/refs/heads/main/SW1_Intranet_running-config.txt)
 
 ## 4. Resultados y Análisis
 
