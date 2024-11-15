@@ -165,19 +165,21 @@ aplicación “Tracker Dashboard” permite al técnico visualizar las medicione
 
 #### Tabla de Subnetting
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab31.png)
+**Tabla 1.** Tabla de subneteo IPv6 e IPv4.
 
 ##### Proceso
-Para calcular la dirección de broadcast de una red, identificamos la dirección IP y su máscara de subred. Ambas se convierten a binario, luego se realiza una operación AND entre la dirección IP y la máscara para obtener la dirección de red. Con esta dirección, se localizan los bits de host (ceros en la máscara) y se cambian todos esos bits por 1 en la dirección de red para obtener la dirección de broadcast. Por ejemplo, para la red 172.17.40.0/22, la dirección de broadcast resultante sería 172.17.43.255.
+La red 2001:1200:A11:: / 48 necesita 4 VLANs, para esto se usa / 64, la recomendada para la mayoría de las redes. Los IDs de estas son AA, BB, CC, EE. Por ello, resultan las subredes 2001:1200:A11:AA:: / 64, 2001:1200:A11:BB:: / 64, 2001:1200:A11:CC:: / 64 y 2001:1200:A11:EE:: / 64. El mismo procedimiento se sigue para las redes de Intranet MAD. De la misma manera, a DMZ se le asigna 2001:1200:C11:1:: / 64. Para las conexiones punto a punto solo se necesitan dos direcciones, por lo que se usa / 127, resultando en 2001:1200:D21:: / 127 y 2001:1200:C11:FF:: / 127. En IPv4, para calcular la dirección de broadcast de una red, identificamos la dirección IP y su máscara de subred. Ambas se convierten a binario, luego se realiza una operación AND entre la dirección IP y la máscara para obtener la dirección de red. Con esta dirección, se localizan los bits de host (ceros en la máscara) y se cambian todos esos bits por 1 en la dirección de red para obtener la dirección de broadcast. Por ejemplo, para la red 193.0.1.0 / 24, la dirección de broadcast resultante sería 193.0.1.255.
 
 #### Tabla de Direccionamiento
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/lab32.png)
+**Tabla 2.** Tabla de direccionamiento con todos los dispositivos de la topología.
 
 ### 2) Describa el proceso de montaje, configuración y validación de los protocolos y servicios de red requeridos para el correcto funcionamiento de la topología de red. FALTA TERMINAR
 
 #### DNS
-Respecto al proceso de configuración del DNS, primero se le asigna de forma estática su IP, es 161.130.2.4, la cual es la que se pone para configurar el DNS server en los dispositivos con el DHCP. Como se muestra en la siguiente imagen, el servicio de DHCP define el dominio como  *www.jnm.net* y lo dirige a 161.130.2.5, número que hace referencia al Web Server al ser su IP. Esto es lo que permite modificar el HTML y darle personalización a la página web.
+Respecto al proceso de configuración del DNS, primero se le asigna de forma estática su IP, 2001:1200:C11:1::20, la cual es la que se pone para configurar el DNS server en los dispositivos con el DHCPv6. Como se muestra en la siguiente imagen, el servicio de DHCP define el dominio como  *www.jnm.net* y lo dirige a 2001:1200:C11:1::10, número que hace referencia al Web Server al ser su IP. Esto es lo que permite modificar el HTML y darle personalización a la página web. Se usa AAAA Record al ser IPv6.
 
-![Imagen]()
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/dns6.png)
 **Figura 13.** Servidor DNS.
 
 #### HTTP
