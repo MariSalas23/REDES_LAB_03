@@ -123,8 +123,7 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 
 - **(8)** No se utilizó otro servicio adicional.
 
-- **(9)** Se desarrolló la aplicación con Python en la ventana "Programming" de los PCs y el servidor Tracker, utilizando TCP (Transmission Control Protocol). La aplicación se puede ver en Desktop como Tracker Dashboard. El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. La
-aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas y las alertas generadas al superar los 40°C y/o 3.5 GHz. Las siguientes imágenes muestran el código y el resultado en consola:
+- **(9)** Se desarrolló la aplicación con Python en la ventana "Programming" de los PCs y el servidor Tracker, utilizando TCP (Transmission Control Protocol). La aplicación se puede ver en Desktop como Tracker Dashboard. El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. La aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas y las alertas generadas al superar los 40°C y/o 3.5 GHz. Las siguientes imágenes muestran el código y el resultado en consola:
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/app3.png)
 **Figura 10.** Consola de los tres dispositivos involucrados en el funcionamiento de la aplicación.
@@ -180,34 +179,46 @@ La red 2001:1200:A11:: / 48 necesita 4 VLANs, para esto se usa / 64, la recomend
 Respecto al proceso de configuración del DNS, primero se le asigna de forma estática su IP, 2001:1200:C11:1::20, la cual es la que se pone para configurar el DNS server en los dispositivos con el DHCPv6. Como se muestra en la siguiente imagen, el servicio de DHCP define el dominio como  *www.jnm.net* y lo dirige a 2001:1200:C11:1::10, número que hace referencia al Web Server al ser su IP. Esto es lo que permite modificar el HTML y darle personalización a la página web. Se usa AAAA Record al ser IPv6.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/dns6.png)
-**Figura 13.** Servidor DNS.
+**Figura 11.** Servidor DNS.
 
 #### HTTP
-Para configurar el servicio de HTTP primero se configuró la dirección IP de forma estática, de acuerdo con la tabla de direccionamiento. Como pertenece a la red de SERVERS, su dirección es 161.130.2.5, perteneciendo a la red 161.132.130.0 / 28. La máscara fue seleccionada para permitir 10 host, como indicaba el laboratorio. Finalmente, se modifica el index.html para que muestre la página personalizada que aparece en la *Figura 2*.
+Para configurar el servicio de HTTP primero se configuró la dirección IP de forma estática, de acuerdo con la tabla de direccionamiento. Como pertenece a la red de SERVERS, su dirección es 2001:1200:C11:1::10 / 64. Finalmente, se modifica el index.html para que muestre la página personalizada que aparece en la *Figura 5*.
 
-![Imagen]()
-**Figura 14.** HTTP.
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/http6.png)
+**Figura 12.** HTTP.
 
-Los servicios DNS y HTTP demuestran ser exitosos y tienen el comportamiento esperado. Lo anterior se debe a que existe la debida conexión entre el servidor web y el servidor DNS, como se evidencia en la simulación. Además, se logra visualizar la página web como se ve en la *Figura 2* al ingresar, desde un PC por medio del web browser, *www.jnm.net*, que es la dirección creada a partir de las iniciales de los integrantes.
+Los servicios DNS y HTTP demuestran ser exitosos y tienen el comportamiento esperado. Lo anterior se debe a que existe la debida conexión entre el servidor web y el servidor DNS, como se evidencia en la simulación. Además, se logra visualizar la página web como se ve en la *Figura 5* al ingresar, desde un PC por medio del web browser, *www.jnm.net*, que es la dirección creada a partir de las iniciales de los integrantes.
 
-![Imagen]()
-**Figura 15.** Conexión entre DNS y HTTP.
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/cone1.png)
+**Figura 13.** Conexión entre DNS y HTTP.
 
 #### DHCPv6 Sateful
-Continuando con el DHCP, se configura de manera estática su dirección IP, la cual pertenece a la red SOHO. Cada VLAN tiene su propio default gateway y dirección IP de inicio (con su respectiva máscara delimitada en la tabla), aunque comparten DNS Server (161.130.2.4) y WLC  (172.17.55.5). Todo esto se puede ver en la *Figura 3*, que aparece al inicio de la wiki. Finalmente, en R_SOHO se asignó como IP helper la dirección 172.17.55.2, haciendo referencia al servidor DHCP. La configuración del servicio se puede evidenciar con la conexión entre el servidor de DHCP y los diferentes dispositivos. 
+Cada VLAN tiene su propio default gateway, aunque comparten DNS Server (2001:1200:C11:1::20). Todo esto se puede ver en la *Figura 2*, que aparece al inicio de la wiki. La configuración del servicio se puede evidenciar con la conexión entre el servidor de DHCP y los diferentes dispositivos. Al tener estado es posible ver en la *Figura 8* el resultado de *show ipv6 dhcp pool*
 
-![Imagen]()
-**Figura 16.** Conexión entre Servidor DHCP y dispositivos.
-
-La *Figura 3* también muestra una captura de cómo se le asigna al PC su dirección IP por medio del DHCP con éxito, demostrando una buena conexión, tanto a nivel físico como lógico, entre los dispositivos. Es decir, con una correcta comunicación gracias a las VLANs, su configuración en los diferentes switches, y buen manejo del R_SOHO.
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/cone.png)
+**Figura 14.** Conexión entre Servidor DHCPv6 y dispositivos.
 
 #### SLAAC
+En la *Figura 6* se puede ver como se accede a este servicio con éxito. En este caso, no hay un servidor y tampoco hay trazabilidad de a qué dispositivos se le asignan las IPs. En general, se suele recomendar hacerlo DHCPv6 Stateful, pero al no tener un servidor, se opta por este método que es más simple y cuenta con una configuración más sencilla.
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/ping.png)
+**Figura 15.** Ping entre Intranet MAD.
 
 #### SNMP
 
+Su funcionamiento se demuestra en la *Figura 4* y en la *Figura 9*. La comunidad RO se llama 'public', mientras que la comunidad RW tiene el nombre de 'private'. En los ejemplos que se muestran se hace la configuración remota de los routers. Este servicio está disponible tanto para la Intranet MAD como para la Intranet BOG. En la siguiente imagen se ve el tráfico que realiza el servicio.
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/snmp6.png)
+**Figura 16.** Captura simulador de Packet Tracer.
+
 #### Aplicación Tracker
+Como se muestra en la *Figura 10*, se desarrolló la aplicación con Python en la ventana "Programming" de los PCs y el servidor Tracker, utilizando TCP (Transmission Control Protocol). La aplicación se puede ver en Desktop como Tracker Dashboard. El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. La aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas y las alertas generadas al superar los 40°C y/o 3.5 GHz. Este punto también se explica con mayor detalle en el *numeral 4)*.
 
 #### Enrutamiento
+Se configura OSPF en los routers ISP_BOG, ISP_FL e ISP_ESP. Por otra parte, se configura EIGRP en ISP_BOG, ISP_NET e ISP_ESP. A continuación se muestra la confirmación en la simulación.
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/t.png)
+**Figura 17.** Conexión entre los routers de Internet (IPv4).
 
 ### 3) Evalúe el flujo bidireccional de datos generado por la solución de seguimiento remoto de paciente desde la aplicación “Tracker App”, pasando por la “Tracker Replay” y finalizando, en la aplicación “Tracker Dashboard”. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
@@ -218,16 +229,17 @@ FALTA CONTESTAR
 FALTA CONTESTAR
 
 ## 5. Retos presentados durante el desarrollo de la práctica
-Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue establecer la correcta comunicación entre los routers y las . Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] para resolver dudas y seguir los pasos para implementar el túnel PIsec VPN. Igualmente, se presentaban problemas en la capa 3 en el enrutamiento, pero se solucionó creando rutas estáticas. La configuración del WLC también fue un gran reto, que al final no se pudo solucionar, ya que, aunque se ingresaba a la página resultante de la IP del WLC desde el web browser del PC, la configuración no se guardaba correctamente y no permitía avanzar al siguiente paso de abrir https://WLC_IP. El proceso descrito en [3] se intentó en los computadores de los tres integrantes del grupo. De acuerdo con la simulación, existe conectividad entre el PC1, el WLC y el LAP, indicando funcionamiento de la capa física y de la capa de enlace, por lo que el problema puede estar relacionado directamente con la configuración del WLC y no con las conexiones realizadas en la red por medio de los switches.
+Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue establecer la correcta comunicación entre los routers y el tunneling IPsec VPN. Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] y [3] para resolver dudas y seguir los pasos para implementar el túnel IPsec VPN. Entonces, se presentan problemas en la capa 3 en el enrutamiento. De acuerdo con la simulación, existe conectividad entre en las mismas VLANs dentro de la misma red, indicando funcionamiento de la capa física (1) y de la capa de enlace (2), por lo que el problema está directamente relacionado con la capa de red.
 
-## 6. Conclusiones y Recomendaciones FALTA CONTESTAR
-En conclusión, la propuesta de la red empresarial permite la correcta conexión de una red de área local al internet. Durante el desarrollo de la solución se presentaron desafíos, especialmente en la implementación de VLANs y servicios como DHCP. A pesar de los retos, este trabajo reforzó los conocimientos del grupo sobre el diseño de redes empresariales y la configuración de dispositivos en **Cisco Packet Tracer**, logrando a través de la configuración de VLANs, DHCP, DNS y HTTP, establecer una red funcional que facilita la comunicación entre dispositivos. 
+## 6. Conclusiones y Recomendaciones
+En conclusión, la propuesta de la red empresarial permite la correcta conexión de una red IPv6 de área local a servicios de HTTP, HTTPS, DNS, SNMP y aplicación Tracker de Cisco. Durante el desarrollo de la solución se presentaron desafíos, especialmente en la implementación del túnel. A pesar de los retos, este trabajo reforzó los conocimientos del grupo sobre el diseño de redes empresariales y la configuración de dispositivos en **Cisco Packet Tracer**, al igual que el uso de las direcciones lógicas IPv6, las cuales son fundamentales con la aparición de la tecnología IoT (Internet of Things) que aumenta significativamente la cantidad de dispositivos, agotando las IPv4. Entonces, aunque se logra a través de la configuración de VLANs, DHCP, DNS, HTTP y demás, y por ende, establecer una red funcional que facilita la comunicación entre dispositivos, no se pudo realizar la conexión de dos redes IPv6 mediante una red IPv4 con el tunneling IPsec VPN. Sin embargo, se reconoce la correcta asignación de las direcciones IP en los routers y el correcto funcionamiento de los protocolos de enrutamiento OSPF y EIGRP.
 
-Se recomienda trabajar utilizando comandos como *show interfaces*, *show vlan brief*, *show running-config*, *show spanning-tree*, *show ip interface brief* y demás para lograr identificar problemas en las capas 1, 2 y/o 3. Adicionalmente, en Cisco Packet Tracer a veces es necesario reiniciar dispositivos cuando no están funcionando pese a que las configuraciones están bien hechas, ya que se trata de un entorno que puede presentar fallos temporales.
+Se recomienda trabajar utilizando comandos como *show interfaces*, *show vlan brief*, *show running-config*, *show spanning-tree*, *show ip interface brief* y demás para lograr identificar problemas en las capas 1, 2 y/o 3. Adicionalmente, en Cisco Packet Tracer a veces es necesario reiniciar dispositivos cuando no están funcionando pese a que las configuraciones están bien hechas, ya que se trata de un entorno que puede presentar fallos temporales. Además, Cisco cuenta con múltiples ejemplos y cursos que facilitan el aprendizaje y el acceso a la información respecto al simulador y la configuración de redes, lo cual puede facilitar este tipo de trabajos.
 
 ## 7. Referencias
 [1] "Cisco Packet Tracer", *Cisco Systems*, 2024. [Enlace]. Disponible: https://www.netacad.com/courses/networking/
 
 [2] "Configuración de TUNNEL GRE IPV6 Sobre IPV4 en Packet tracer 7.2.2", YouTube, 2020. [Online]. Disponible: https://www.youtube.com/watch?v=474pi7GAD-o. [Accessed: 12-Nov-2024].
 
-[3] REFERENCIA DE LA APP
+[3] "Cisco Packet Tracer – video 8: Redistribucion de rutas protocolos EIGRP-OSPF [paso a paso]", YouTube, 2020. [Online]. Disponible: https://www.youtube.com/watch?v=YbY2dPg2UNU. [Accessed: 12-Nov-2024].
+
