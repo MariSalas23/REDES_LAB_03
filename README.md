@@ -129,6 +129,7 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 **Figura 10.** Consola de los tres dispositivos involucrados en el funcionamiento de la aplicación.
 
 - **(10)** Los archivos TXT con las configuraciones también se encuentran anexados en la tarea de Teams.
+     * [Configuración de Multilayer Switch](https://raw.githubusercontent.com/MariSalas23/REDES_LAB_03/refs/heads/main/Multilayer%20Switch0_running-config.txt)
      * [Configuración de Routers](https://raw.githubusercontent.com/MariSalas23/REDES_LAB_03/refs/heads/main/R2_ESP_running-config.txt)
      * [Configuración de Switches](https://raw.githubusercontent.com/MariSalas23/REDES_LAB_03/refs/heads/main/SW1_Intranet_running-config.txt)
 
