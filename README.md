@@ -228,11 +228,11 @@ La imagen muestra el panel de simulación de Cisco Packet Tracer, donde se visua
 
 La aplicación se puede ver en Desktop como Tracker Dashboard. El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. La aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas y las alertas generadas al superar los 40°C y/o 3.5 GHz. El dashboard estaba originalmente en el PC7, sin embargo, como no hay conexión entre Intranet BOG e Intranet MAD, se instala en el PC2.
 
-Su correcto funcionamiento se ve en la *Figura 7*, donde se observa el resultado de la aplicación y su interfaz gráfica. La *Figura 10* evidencia la consola de los tres dispositivos involucrados en el funcionamiento de la aplicación.
+Su correcto funcionamiento se ve en la *Figura 7*, donde se observa el resultado de la aplicación y su interfaz gráfica. La *Figura 10* evidencia la consola de los tres dispositivos involucrados en el funcionamiento de la aplicación. En la siguiente figura se muestra el flujo desde el simulador de Cisco Packet Tracer.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/tcp.png)
 
-**Figura 18.**Captura del simulador cuando funciona el servicio del Tracker (TCP).
+**Figura 18.** Captura del simulador cuando funciona el servicio del Tracker (TCP).
 
 ### 4) Explique el flujo bidireccional de mensajes SNMP intercambiados entre los dispositivos gestionados desde las diferentes Intranets al utilizar capacidades “get” y “set” sobre una variable MIB de su elección. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
