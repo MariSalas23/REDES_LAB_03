@@ -1,0 +1,178 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R2_ESP
+!
+!
+!
+enable secret 5 $1$mERr$Wmdu8FSDG1wNa1xa4SQGi.
+!
+!
+!
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+!
+no ipv6 cef
+!
+ipv6 dhcp pool DNS-Pool
+ dns-server 2001:1200:C11:1::20
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017JGTV-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Tunnel0
+ no ip address
+ mtu 1476
+ ipv6 address 2001:1200:D11:1::10/64
+ tunnel source Serial0/0/0
+ tunnel destination 192.168.10.1
+ tunnel mode ipv6ip
+!
+!
+interface FastEthernet0/0
+ description Conexion a Switch
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface FastEthernet0/0.20
+ no ip address
+ ipv6 traffic-filter ALLOW-SNMP-INTERNAL in
+!
+interface FastEthernet0/0.101
+ encapsulation dot1Q 101
+ no ip address
+ ipv6 traffic-filter BLOCK-SNMP in
+ ipv6 address 2001:1200:B21:FF::1/64
+ ipv6 nd other-config-flag
+ ipv6 dhcp server DNS-Pool
+!
+interface FastEthernet0/0.102
+ encapsulation dot1Q 102
+ no ip address
+ ipv6 traffic-filter ALLOW-SNMP-INTERNAL in
+ ipv6 address 2001:1200:B21:102::1/64
+ ipv6 nd other-config-flag
+ ipv6 dhcp server DNS-Pool
+!
+interface FastEthernet0/0.103
+ encapsulation dot1Q 103
+ no ip address
+ ipv6 traffic-filter BLOCK-SNMP in
+ ipv6 address 2001:1200:B21:103::1/64
+ ipv6 nd other-config-flag
+ ipv6 dhcp server DNS-Pool
+!
+interface FastEthernet0/0.999
+ encapsulation dot1Q 999 native
+ no ip address
+ ipv6 address 2001:1200:B21:999::1/64
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ description Conexion a ISP_ESP
+ ip address 193.0.1.21 255.255.255.252
+ ipv6 address 2001:1200:D21::1/64
+ clock rate 2000000
+!
+interface Serial0/0/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ipv6 router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+ipv6 access-list ALLOW-SNMP-INTERNAL
+ permit udp 2001:1200:B21:102::/64 any eq snmp
+ permit udp 2001:1200:B21:102::/64 any eq 162
+ deny udp any any eq snmp
+ deny udp any any eq 162
+ permit ipv6 any any
+ipv6 access-list BLOCK-SNMP
+ deny udp any any eq snmp
+ deny udp any any eq 162
+ permit ipv6 any any
+ipv6 access-list BLOCK-HTTPS
+ deny tcp any any eq 443
+ permit ipv6 any any
+ipv6 access-list BLOCK-HTTP
+ deny tcp any any eq www
+ permit ipv6 any any
+!
+banner motd #Solo personal autorizado#
+!
+!
+!
+snmp-server community public RO
+snmp-server community private RW
+!
+line con 0
+ password 7 0870
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0870
+ login
+line vty 5 15
+ password 7 0870
+ login
+!
+!
+!
+end
+
