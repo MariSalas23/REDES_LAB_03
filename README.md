@@ -6,7 +6,7 @@
 - **Mariana Salas Gutiérrez** (0000296781)
 
 ## Video
-Link (SharePoint)
+https://unisabanaedu-my.sharepoint.com/:v:/g/personal/marianasalgu_unisabana_edu_co/ERXglN3rwzZKttSghH8eKG0BrTh2o5YxAP8o-qYJ_gCdYw?e=guPQFW&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
 
 ## Introducción
 La coexistencia de IPv4 e IPv6 en redes empresariales es fundamental para enfrentar los desafíos actuales de crecimiento de las redes y agotamiento de direcciones IPv4, es decir, IPv6 se ha vuelto importante para la escalabilidad y flexibilidad en las infraestructuras de red. Por ello, este informe explora el diseño, simulación y análisis de una red que permite la interoperabilidad entre ambos protocolos, utilizando Cisco Packet Tracer para la configuración y validación. Además, se destacan las problemáticas encontradas, así como las soluciones implementadas, y las conclusiones y recomendaciones a partir de los resultados del laboratorio.
