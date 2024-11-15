@@ -123,8 +123,11 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 
 - **(8)** No se utilizó otro servicio adicional.
 
-- **(9)** Desarrolle una solución “Tracker” (software) orientada al seguimiento remoto de activos (PCs). El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. El servidor “Tracker Server” cuenta con una aplicación “Tracker Replay” que recibe las mediciones enviadas por la “Tracker App” y las reenvía a la aplicación “Tracker Dashboard”. Ésta última se ejecuta en un computador, PC7, ubicado en la Intranet MAD. La aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas por la aplicación
-“Tracker App” y las alertas generadas al superar los 40°C y/o 3.5 GHz. Las aplicaciones intercambian mensajes a través de sockets. FALTA CONTESTAR
+- **(9)** Se desarrolló la aplicación con Python en la ventana "Programming" de los PCs y el servidor Tracker, utilizando TCP (Transmission Control Protocol). La aplicación se puede ver en Desktop como Tracker Dashboard. El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. La
+aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas y las alertas generadas al superar los 40°C y/o 3.5 GHz. Las siguientes imágenes muestran el código y el resultado en consola:
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/app3.png)
+**Figura 10.** Consola de los tres dispositivos involucrados en el funcionamiento de la aplicación.
 
 - **(10)** Los archivos TXT con las configuraciones también se encuentran anexados en la tarea de Teams.
      * [Configuración de Routers](https://raw.githubusercontent.com/MariSalas23/REDES_LAB_03/refs/heads/main/R2_ESP_running-config.txt)
