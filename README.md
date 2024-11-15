@@ -209,6 +209,7 @@ En la *Figura 6* se puede ver como se accede a este servicio con éxito. En este
 Su funcionamiento se demuestra en la *Figura 4* y en la *Figura 9*. La comunidad RO se llama 'public', mientras que la comunidad RW tiene el nombre de 'private'. En los ejemplos que se muestran se hace la configuración remota de los routers. Este servicio está disponible tanto para la Intranet MAD como para la Intranet BOG. En la siguiente imagen se ve el tráfico que realiza el servicio.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/snmp6.png)
+
 **Figura 16.** Captura simulador de Packet Tracer.
 
 #### Aplicación Tracker
@@ -218,6 +219,7 @@ Como se muestra en la *Figura 10*, se desarrolló la aplicación con Python en l
 Se configura OSPF en los routers ISP_BOG, ISP_FL e ISP_ESP. Por otra parte, se configura EIGRP en ISP_BOG, ISP_NET e ISP_ESP. A continuación se muestra la confirmación en la simulación.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/t.png)
+
 **Figura 17.** Conexión entre los routers de Internet (IPv4).
 
 ### 3) Evalúe el flujo bidireccional de datos generado por la solución de seguimiento remoto de paciente desde la aplicación “Tracker App”, pasando por la “Tracker Replay” y finalizando, en la aplicación “Tracker Dashboard”. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
@@ -229,6 +231,7 @@ La aplicación se puede ver en Desktop como Tracker Dashboard. El sistema comput
 Su correcto funcionamiento se ve en la *Figura 7*, donde se observa el resultado de la aplicación y su interfaz gráfica. La *Figura 10* evidencia la consola de los tres dispositivos involucrados en el funcionamiento de la aplicación.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/tcp.png)
+
 **Figura 18.**Captura del simulador cuando funciona el servicio del Tracker (TCP).
 
 ### 4) Explique el flujo bidireccional de mensajes SNMP intercambiados entre los dispositivos gestionados desde las diferentes Intranets al utilizar capacidades “get” y “set” sobre una variable MIB de su elección. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
