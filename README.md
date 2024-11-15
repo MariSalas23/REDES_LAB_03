@@ -208,10 +208,6 @@ En la *Figura 6* se puede ver como se accede a este servicio con éxito. En este
 
 Su funcionamiento se demuestra en la *Figura 4* y en la *Figura 9*. La comunidad RO se llama 'public', mientras que la comunidad RW tiene el nombre de 'private'. En los ejemplos que se muestran se hace la configuración remota de los routers. Este servicio está disponible tanto para la Intranet MAD como para la Intranet BOG. En la siguiente imagen se ve el tráfico que realiza el servicio.
 
-![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/snmp6.png)
-
-**Figura 16.** Captura simulador de Packet Tracer.
-
 #### Aplicación Tracker
 Como se muestra en la *Figura 10*, se desarrolló la aplicación con Python en la ventana "Programming" de los PCs y el servidor Tracker, utilizando TCP (Transmission Control Protocol). La aplicación se puede ver en Desktop como Tracker Dashboard. El sistema computo, PC4, ubicado en la Intranet BOG, utiliza una aplicación “Tracker App” que se ejecuta internamente para monitorizar la temperatura y velocidad de reloj del procesador. Las mediciones de temperatura y velocidad de reloj son generadas aleatoriamente dentro de un rango de 30°C y 50°C, y 3.5 GHz y 4.0 GHz, respectivamente. Las mediciones capturadas por la “Tracker App” son enviadas al servidor “Tracker Server”, ubicado en el DMZ, cada segundo. La aplicación “Tracker Dashboard” permite al técnico visualizar las mediciones capturadas y las alertas generadas al superar los 40°C y/o 3.5 GHz. Este punto también se explica con mayor detalle en el *numeral 4)*.
 
@@ -220,7 +216,7 @@ Se configura OSPF en los routers ISP_BOG, ISP_FL e ISP_ESP. Por otra parte, se c
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/t.png)
 
-**Figura 17.** Conexión entre los routers de Internet (IPv4).
+**Figura 16.** Conexión entre los routers de Internet (IPv4).
 
 ### 3) Evalúe el flujo bidireccional de datos generado por la solución de seguimiento remoto de paciente desde la aplicación “Tracker App”, pasando por la “Tracker Replay” y finalizando, en la aplicación “Tracker Dashboard”. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
@@ -232,11 +228,21 @@ Su correcto funcionamiento se ve en la *Figura 7*, donde se observa el resultado
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/tcp.png)
 
-**Figura 18.** Captura del simulador cuando funciona el servicio del Tracker (TCP).
+**Figura 17.** Captura del simulador cuando funciona el servicio del Tracker (TCP).
 
 ### 4) Explique el flujo bidireccional de mensajes SNMP intercambiados entre los dispositivos gestionados desde las diferentes Intranets al utilizar capacidades “get” y “set” sobre una variable MIB de su elección. Justifique su análisis utilizando capturas con el simulador y los filtros de paquetes de Cisco Packet Tracer.
 
-FALTA CONTESTAR
+En el panel de simulación de Cisco Packet Tracer se observan múltiples mensajes de SNMP (Simple Network Management Protocol) que se intercambian entre dispositivos en la red, específicamente entre PC2, los switches de la intranet (SW1_Intranet, SW2_Intranet, SW3_Intranet), y el router R1_BOG. Este tráfico SNMP incluye tanto solicitudes como respuestas que reflejan la comunicación bidireccional necesaria para la administración de red. Los dispositivos gestionados pueden utilizar dos operaciones fundamentales de SNMP: "get" y "set", las cuales permiten al administrador de red consultar y modificar valores específicos de las variables MIB (Management Information Base), respectivamente. La MIB almacena información clave sobre el estado y configuración de cada dispositivo de red, y su manipulación es esencial para la supervisión y el control de los equipos.
+
+Los mensajes "get" son solicitudes que permiten a un gestor SNMP, como PC2 en la intranet, consultar variables MIB en dispositivos específicos. En este caso, PC2 inicia la comunicación con un mensaje dirigido a SW2_Intranet, seguido de respuestas SNMP que retornan al dispositivo solicitante. Este tipo de solicitud se hizo con los mensajes "get" para obtener el nombre del router R1_BOG.
+
+Por otro lado, los mensajes "set" permiten modificar variables MIB específicas en los dispositivos de red. Estos mensajes se utilizan para cambiar configuraciones, como habilitar o deshabilitar puertos, ajustar parámetros de seguridad o modificar políticas de enrutamiento. La capacidad de modificar variables MIB con comandos "set" permite a los administradores de red implementar cambios de configuración de manera remota, lo cual es fundamental para la administración centralizada de una red distribuida.
+
+Los filtros de paquetes en Cisco Packet Tracer permiten capturar exclusivamente el tráfico SNMP, lo que facilita la visualización detallada de los tipos de mensajes, como "set" y "get", y de las variables MIB que están siendo manipuladas, sin la interferencia de otros protocolos en la red. Además, monitorear los eventos en tiempo real es útil para verificar que las operaciones "set" aplicadas tengan el efecto deseado en los dispositivos gestionados. Mediante la captura de estos intercambios, se puede confirmar que el flujo de mensajes SNMP bidireccional está operando correctamente, lo cual facilita la administración de la red y asegura que las actualizaciones de las variables MIB se realicen adecuadamente en los dispositivos supervisados. El flujo se puede ver en la *Figura 18* a continuación:
+
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/snmp6.png)
+
+**Figura 18.** Captura simulador de Packet Tracer.
 
 ## 5. Retos presentados durante el desarrollo de la práctica
 Durante el proceso de configuración en **Cisco Packet Tracer**, uno de los desafíos más grandes fue establecer la correcta comunicación entre los routers y el tunneling IPsec VPN. Por ello, se realizó una búsqueda de información y se utilizó la fuente [2] y [3] para resolver dudas y seguir los pasos para implementar el túnel IPsec VPN. Entonces, se presentan problemas en la capa 3 en el enrutamiento. De acuerdo con la simulación, existe conectividad entre en las mismas VLANs dentro de la misma red, indicando funcionamiento de la capa física (1) y de la capa de enlace (2), por lo que el problema está directamente relacionado con la capa de red.
@@ -251,5 +257,5 @@ Se recomienda trabajar utilizando comandos como *show interfaces*, *show vlan br
 
 [2] "Configuración de TUNNEL GRE IPV6 Sobre IPV4 en Packet tracer 7.2.2", YouTube, 2020. [Online]. Disponible: https://www.youtube.com/watch?v=474pi7GAD-o. [Accessed: 12-Nov-2024].
 
-[3] "Cisco Packet Tracer – video 8: Redistribucion de rutas protocolos EIGRP-OSPF [paso a paso]", YouTube, 2020. [Online]. Disponible: https://www.youtube.com/watch?v=YbY2dPg2UNU. [Accessed: 12-Nov-2024].
+[3] "Cisco Packet Tracer – video 8: Redistribución de rutas protocolos EIGRP-OSPF [paso a paso]", YouTube, 2020. [Online]. Disponible: https://www.youtube.com/watch?v=YbY2dPg2UNU. [Accessed: 12-Nov-2024].
 
