@@ -89,9 +89,9 @@ Con el fin de que únicamente los PCs de la red interna deben gestionar sus resp
 **Figura 6.** Configuración de las ACL.
 
 ### Aplicación Tracker
-...
+Para la aplicación se programó en Python en la ventana "Programming" 
 
-![Imagen]()
+![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/app.png)
 **Figura 7.** Aplicación Tracker.
 
 - Más capturas de configuración y verificación se encuentran en los siguientes apartados para resolver las preguntas propuestas en el laboratorio, analizar los resultados y justificar las conclusiones.
@@ -117,7 +117,7 @@ de la configuración realizada. Hint. Tunneling VPN con IPsec. ¿Dónde se deben
 - **(7)** Para el soporte de gestión de red en ambas Intranet utilizando el estándar SNMP se crearon dos comunidades, public (reader) y private (writer). Únicamente los PCs de la red interna pueden gestionar sus respectivas Intranets (set y get) utilizando SNMP gracias al servicio de ACL, ya que se configuran, como se muestra en la siguiente imagen, para denegar el uso de SNMP a las demás VLANs.
 
 ![Imagen](https://github.com/MariSalas23/REDES_LAB_03/raw/main/confsnmp.png)
-**Figura 9.** Configuración de SNMP y ACL en R2_MAD.
+**Figura 9.** Configuración de SNMP y ACL en R2_BOG.
 
 - **(8)** No se utilizó otro servicio adicional.
 
